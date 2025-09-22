@@ -1,7 +1,9 @@
 from flask import Flask, render_template, session, redirect, url_for
+from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = "cumple21"  # Necesario para sesiones
+app.permanent_session_lifetime = timedelta(days=10)  # Sesión dura 10 días
 
 TOTAL_RETOS = 12
 
@@ -41,6 +43,10 @@ def completar(num_juego):
 def reiniciar():
     session["completados"] = []
     return redirect(url_for("juegos"))
+
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
 
 if __name__ == "__main__":
     app.run(debug=True)
