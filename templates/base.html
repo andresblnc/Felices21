@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Felices 21 Años{% endblock %}</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #d72660;
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            text-shadow: 2px 2px 8px #fff;
+        }
+        .subtitle {
+            color: #1b1b1b;
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+        .card {
+            background: #fff;
+            padding: 5em 4em; /* 5em arriba/abajo, 4em izquierda/derecha */
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(215,38,96,0.15);
+            text-align: center;
+            margin: 1em;
+            max-width: 1100px;
+            width: 90vw;
+        }
+        .adelante-btn, .juego-btn {
+            display: inline-block;
+            margin-top: 1.5em;
+            padding: 0.8em 2em;
+            background: #d72660;
+            color: #fff;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(215,38,96,0.15);
+            transition: background 0.2s;
+        }
+        .adelante-btn:hover, .juego-btn:hover {
+            background: #a81c47;
+        }
+        .juegos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5em;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .juego-card {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            background: #fff; /* vuelve a ser blanca */
+            color: #d72660;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(215,38,96,0.10);
+            transition: box-shadow 0.2s;
+            margin: 0;
+        }
+        .juego-card:hover {
+            box-shadow: 0 4px 16px rgba(215,38,96,0.20);
+        }
+        a.juego-btn {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: none;
+            color: #d72660; /* texto color principal */
+            font-weight: bold;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: color 0.2s, font-size 0.2s;
+        }
+        a.juego-btn:hover {
+            color: #ffff;
+            font-size: 1.4em; /* texto más grande en hover */
+        }
+    </style>
+</head>
+<body>
+    <div style="width:100%; display:flex; justify-content:center; margin-top:2em; margin-bottom:2em;">
+        <div style="background:#eee; border-radius:10px; width:300px; height:30px; position:relative;">
+            <div style="background:#d72660; height:100%; border-radius:10px; width:{{ progreso * 100 // total_retos }}%; transition:width 0.3s;"></div>
+            <div style="position:absolute; width:100%; top:0; left:0; text-align:center; line-height:30px; font-weight:bold; color:#ffb6c1;">
+                {{ progreso }}/{{ total_retos }}
+            </div>
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>

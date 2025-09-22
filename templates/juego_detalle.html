@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Reto {{ num_juego }}{% endblock %}
+{% block content %}
+    <div class="card">
+        <h1>Reto {{ num_juego }}</h1>
+        <div class="subtitle">¡Aquí va el contenido del reto {{ num_juego }}!</div>
+        {% if not completado %}
+            <a href="/completar/{{ num_juego }}" class="adelante-btn">Completar</a>
+        {% else %}
+            <div style="color:green; font-weight:bold; margin:1em 0;">¡Reto completado!</div>
+        {% endif %}
+        <a href="/juego" class="adelante-btn">Volver</a>
+    </div>
+{% endblock %}
