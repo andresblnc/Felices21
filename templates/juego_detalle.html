@@ -5,7 +5,7 @@
         <h1>Reto {{ num_juego }}</h1>
         <div class="subtitle">¡Aquí va el contenido del reto {{ num_juego }}!</div>
         {% if num_juego == 1 %}
-            <img src="{{ url_for('static', filename='ft1.png') }}" alt="Foto reto 1" style="max-width:300px; border-radius:16px; margin:1em 0;">
+            <img src="{{ url_for('static', filename='ft1.jpg') }}" alt="Foto reto 1" style="max-width:300px; border-radius:16px; margin:1em 0;">
             <form method="post" style="margin:1em 0;">
                 <label>Latitud:</label>
                 <input type="text" name="latitud" required>
@@ -26,7 +26,7 @@
                 <a href="/completar/{{ num_juego }}" class="adelante-btn" style="background:green;">Completar</a>
             {% endif %}
         {% elif num_juego == 2 %}
-            <img src="{{ url_for('static', filename='ft2.png') }}" alt="Foto reto 2" style="max-width:300px; border-radius:16px; margin:1em 0;">
+            <img src="{{ url_for('static', filename='ft2.jpg') }}" alt="Foto reto 2" style="max-width:300px; border-radius:16px; margin:1em 0;">
             <form method="post" style="margin:1em 0;">
                 <label>Latitud:</label>
                 <input type="text" name="latitud" required>
