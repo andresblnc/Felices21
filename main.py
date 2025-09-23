@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, session, redirect, url_for, request, flash
 from datetime import timedelta
 
 app = Flask(__name__)
@@ -24,7 +24,47 @@ def juego_detalle(num_juego):
     if 1 <= num_juego <= TOTAL_RETOS:
         completados = session.get("completados", [])
         completado = num_juego in completados
-        return render_template("juego_detalle.html", num_juego=num_juego, completado=completado, progreso=get_progreso(), total_retos=TOTAL_RETOS)
+        correcto = False
+
+        # Reto 1: validar lat/lon
+        if num_juego == 1 and request.method == "POST":
+            lat = request.form.get("latitud")
+            lon = request.form.get("longitud")
+            try:
+                lat = float(lat)
+                lon = float(lon)
+                lat_ok = 20.610 <= lat <= 20.612
+                lon_ok = -103.463 <= lon <= -103.460
+                correcto = lat_ok and lon_ok
+                if not correcto:
+                    flash("¡Intenta de nuevo! Las coordenadas no son correctas.")
+            except (TypeError, ValueError):
+                flash("Por favor ingresa valores válidos.")
+
+        # Reto 2: validar lat/lon
+        if num_juego == 2 and request.method == "POST":
+            lat = request.form.get("latitud")
+            lon = request.form.get("longitud")
+            try:
+                lat = float(lat)
+                lon = float(lon)
+                # Cambia estos valores por los correctos para tu foto 2
+                lat_ok = 20.665 <= lat <= 20.671
+                lon_ok = -103.443 <= lon <= -103.438
+                correcto = lat_ok and lon_ok
+                if not correcto:
+                    flash("¡Intenta de nuevo! Las coordenadas no son correctas.")
+            except (TypeError, ValueError):
+                flash("Por favor ingresa valores válidos.")
+
+        return render_template(
+            "juego_detalle.html",
+            num_juego=num_juego,
+            completado=completado,
+            correcto=correcto,
+            progreso=get_progreso(),
+            total_retos=TOTAL_RETOS
+        )
     else:
         return "<h2>Reto no encontrado</h2>", 404
 

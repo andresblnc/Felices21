@@ -4,10 +4,54 @@
     <div class="card">
         <h1>Reto {{ num_juego }}</h1>
         <div class="subtitle">¡Aquí va el contenido del reto {{ num_juego }}!</div>
-        {% if not completado %}
-            <a href="/completar/{{ num_juego }}" class="adelante-btn">Completar</a>
+        {% if num_juego == 1 %}
+            <img src="{{ url_for('static', filename='ft1.png') }}" alt="Foto reto 1" style="max-width:300px; border-radius:16px; margin:1em 0;">
+            <form method="post" style="margin:1em 0;">
+                <label>Latitud:</label>
+                <input type="text" name="latitud" required>
+                <br><br>
+                <label>Longitud:</label>
+                <input type="text" name="longitud" required>
+                <br><br>
+                <button type="submit" class="adelante-btn">Verificar</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div style="color:red; margin-bottom:1em;">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% if correcto %}
+                <a href="/completar/{{ num_juego }}" class="adelante-btn" style="background:green;">Completar</a>
+            {% endif %}
+        {% elif num_juego == 2 %}
+            <img src="{{ url_for('static', filename='ft2.png') }}" alt="Foto reto 2" style="max-width:300px; border-radius:16px; margin:1em 0;">
+            <form method="post" style="margin:1em 0;">
+                <label>Latitud:</label>
+                <input type="text" name="latitud" required>
+                <br><br>
+                <label>Longitud:</label>
+                <input type="text" name="longitud" required>
+                <br><br>
+                <button type="submit" class="adelante-btn">Verificar</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div style="color:red; margin-bottom:1em;">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% if correcto %}
+                <a href="/completar/{{ num_juego }}" class="adelante-btn" style="background:green;">Completar</a>
+            {% endif %}
         {% else %}
-            <div style="color:green; font-weight:bold; margin:1em 0;">¡Reto completado!</div>
+            {% if not completado %}
+                <a href="/completar/{{ num_juego }}" class="adelante-btn">Completar</a>
+            {% else %}
+                <div style="color:green; font-weight:bold; margin:1em 0;">¡Reto completado!</div>
+            {% endif %}
         {% endif %}
         <a href="/juego" class="adelante-btn">Volver</a>
     </div>
