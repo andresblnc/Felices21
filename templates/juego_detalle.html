@@ -3,7 +3,6 @@
 {% block content %}
     <div class="card">
         <h1>Reto {{ num_juego }}</h1>
-        <div class="subtitle">¡Aquí va el contenido del reto {{ num_juego }}!</div>
         {% if num_juego == 1 %}
             <img src="{{ url_for('static', filename='ft1.jpg') }}" alt="Foto reto 1" style="max-width:300px; border-radius:16px; margin:1em 0;">
             <form method="post" style="margin:1em 0;">
@@ -36,6 +35,54 @@
                 <br><br>
                 <button type="submit" class="adelante-btn">Verificar</button>
             </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div style="color:red; margin-bottom:1em;">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% if correcto %}
+                <a href="/completar/{{ num_juego }}" class="adelante-btn" style="background:green;">Completar</a>
+            {% endif %}
+        {% elif num_juego == 3 %}
+            <img src="{{ url_for('static', filename='ft3.jpg') }}" alt="Foto reto 3" style="max-width:300px; border-radius:16px; margin:1em 0;">
+            <div style="margin: 2em 0;">
+                <form method="post">
+                    <!-- Botón rojo -->
+                    <button type="submit" name="rojo" style="
+                        background: red;
+                        color: white;
+                        border: none;
+                        padding: 1em 2em;
+                        font-size: 1.5em;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    ">
+                        ¡Pulsa aquí!
+                    </button>
+                </form>
+
+                <!-- Botón verde (solo aparece en el clic 19) -->
+                {% if mostrar_verde %}
+                <form method="post" style="margin-top: 1em;">
+                    <button type="submit" name="verde" style="
+                        background: green;
+                        color: white;
+                        border: none;
+                        padding: 1em 2em;
+                        font-size: 1.5em;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    ">
+                        ¡Pulsa el botón verde!
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+            <p style="margin-top: 1em; font-size: 1.2em;">Clics: {{ contador }} / 100</p>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <div style="color:red; margin-bottom:1em;">
