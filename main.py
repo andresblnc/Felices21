@@ -100,6 +100,14 @@ def juego_detalle(num_juego):
                 mostrar_verde=mostrar_verde
             )
 
+        # Reto 4: Pregunta sobre Capi
+        if num_juego == 4 and request.method == "POST":
+            respuesta = request.form.get("respuesta")
+            if respuesta and respuesta.strip() == "12":
+                correcto = True
+            else:
+                flash("Respuesta incorrecta. Intenta de nuevo.")
+
         return render_template(
             "juego_detalle.html",
             num_juego=num_juego,

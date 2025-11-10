@@ -46,7 +46,6 @@
                 <a href="/completar/{{ num_juego }}" class="adelante-btn" style="background:green;">Completar</a>
             {% endif %}
         {% elif num_juego == 3 %}
-            <img src="{{ url_for('static', filename='ft3.jpg') }}" alt="Foto reto 3" style="max-width:300px; border-radius:16px; margin:1em 0;">
             <div style="margin: 2em 0;">
                 <form method="post">
                     <!-- Botón rojo -->
@@ -83,6 +82,24 @@
                 {% endif %}
             </div>
             <p style="margin-top: 1em; font-size: 1.2em;">Clics: {{ contador }} / 100</p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div style="color:red; margin-bottom:1em;">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% if correcto %}
+                <a href="/completar/{{ num_juego }}" class="adelante-btn" style="background:green;">Completar</a>
+            {% endif %}
+        {% elif num_juego == 4 %}
+            <h2>¿Cuántos meses tiene Capi?</h2>
+            <form method="post" style="margin:1em 0;">
+                <label>Respuesta:</label>
+                <input type="text" name="respuesta" required>
+                <br><br>
+                <button type="submit" class="adelante-btn">Verificar</button>
+            </form>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <div style="color:red; margin-bottom:1em;">
