@@ -93,6 +93,7 @@
                 <a href="/completar/{{ num_juego }}" class="adelante-btn" style="background:green;">Completar</a>
             {% endif %}
         {% elif num_juego == 4 %}
+            <img src="{{ url_for('static', filename='ft3.png') }}" alt="Foto reto 4" style="max-width:300px; border-radius:16px; margin:1em 0;">
             <h2>¿Cuántos meses tiene Capi?</h2>
             <form method="post" style="margin:1em 0;">
                 <label>Respuesta:</label>

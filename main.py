@@ -133,7 +133,7 @@ def completar(num_juego):
 @app.route("/reiniciar")
 def reiniciar():
     session["completados"] = []
-    session.pop("contador_reto_3", None)  # Reinicia el contador del reto 3
+    session.pop("contador_reto_3", None) 
     return redirect(url_for("juegos"))
 
 @app.before_request
