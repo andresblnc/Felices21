@@ -108,6 +108,14 @@ def juego_detalle(num_juego):
             else:
                 flash("Respuesta incorrecta. Intenta de nuevo.")
 
+        # Reto 5: Pregunta sobre un crucigrama
+        if num_juego == 5 and request.method == "POST":
+            respuesta = request.form.get("respuesta")
+            if respuesta and respuesta.strip().lower() == "japon":
+                correcto = True
+            else:
+                flash("Respuesta incorrecta. Intenta de nuevo.")
+
         return render_template(
             "juego_detalle.html",
             num_juego=num_juego,
