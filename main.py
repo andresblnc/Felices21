@@ -116,6 +116,14 @@ def juego_detalle(num_juego):
             else:
                 flash("Respuesta incorrecta. Intenta de nuevo.")
 
+        # Reto 6: Identificar diferencias entre dos imágenes
+        if num_juego == 6 and request.method == "POST":
+            respuesta = request.form.get("respuesta")
+            if respuesta and respuesta.strip() == "6":
+                correcto = True
+            else:
+                flash("Respuesta incorrecta. Intenta de nuevo.")
+
         return render_template(
             "juego_detalle.html",
             num_juego=num_juego,
