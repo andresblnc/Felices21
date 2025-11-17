@@ -50,8 +50,8 @@ def juego_detalle(num_juego):
                 lat = float(lat)
                 lon = float(lon)
                 # Cambia estos valores por los correctos para tu foto 2
-                lat_ok = 20.665 <= lat <= 20.671
-                lon_ok = -103.443 <= lon <= -103.438
+                lat_ok = 20.752 <= lat <= 20.754
+                lon_ok = -105.462 <= lon <= -105.460
                 correcto = lat_ok and lon_ok
                 if not correcto:
                     flash("Womp Womp! Intenta de nuevo.")
@@ -131,6 +131,16 @@ def juego_detalle(num_juego):
                 correcto = True
             else:
                 flash("Respuesta incorrecta. Intenta de nuevo.")
+
+        # Reto 8: Pregunta sobre las fechas importantes
+        if num_juego == 8 and request.method == "POST":
+            respuesta_vimos = request.form.get("respuesta_vimos")
+            respuesta_conocimos = request.form.get("respuesta_conocimos")
+            if (respuesta_vimos and respuesta_vimos.strip() == "23/02/2024" and
+                respuesta_conocimos and respuesta_conocimos.strip() == "02/03/2024"):
+                correcto = True
+            else:
+                flash("Respuesta incorrecta. Asegúrate de ingresar las fechas en el formato dd/mm/aaaa.")
 
         return render_template(
             "juego_detalle.html",
