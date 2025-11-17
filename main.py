@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = "cumple21"  # Necesario para sesiones
 app.permanent_session_lifetime = timedelta(days=10)  # Sesión dura 10 días
 
-TOTAL_RETOS = 12
+TOTAL_RETOS = 8
 
 def get_progreso():
     completados = session.get("completados", [])
@@ -151,7 +151,7 @@ def juego_detalle(num_juego):
             total_retos=TOTAL_RETOS
         )
     else:
-        return "<h2>Reto no encontrado</h2>", 404
+        return redirect(url_for("juegos"))
 
 @app.route("/completar/<int:num_juego>")
 def completar(num_juego):
@@ -169,6 +169,15 @@ def reiniciar():
     session["completados"] = []
     session.pop("contador_reto_3", None) 
     return redirect(url_for("juegos"))
+
+@app.route("/felicidades")
+def felicidades():
+    completados = session.get("completados", [])
+    progreso = len(completados)
+    if progreso == TOTAL_RETOS:
+        return render_template("felicidades.html", progreso=progreso, total_retos=TOTAL_RETOS)
+    else:
+        return redirect(url_for("juegos"))
 
 @app.before_request
 def make_session_permanent():

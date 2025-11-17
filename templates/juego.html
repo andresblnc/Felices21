@@ -4,7 +4,7 @@
     <div class="card">
         <h1>Felices 21 Años 🎉</h1>
         <div class="juegos-grid">
-            {% for i in range(1, 13) %}
+            {% for i in range(1, total_retos + 1) %}
             <div class="juego-card">
                 <a href="/juego/{{i}}" class="juego-btn">Reto {{i}}</a>
             </div>
@@ -13,5 +13,6 @@
     </div>
     <div style="width:100%; display:flex; justify-content:center; margin-top:2em; margin-bottom:2em;">
         <a href="/reiniciar" class="adelante-btn" style="background:#888; font-size:0.9em; padding:0.8em 2em;">Reiniciar progreso</a>
+        <a href="/felicidades" class="adelante-btn" style="background:green; font-size:0.9em; padding:0.8em 2em; margin-left: 10px; {% if progreso < total_retos %}pointer-events: none; opacity: 0.5;{% endif %}">Terminar</a>
     </div>
 {% endblock %}
