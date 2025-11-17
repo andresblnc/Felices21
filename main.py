@@ -124,6 +124,14 @@ def juego_detalle(num_juego):
             else:
                 flash("Respuesta incorrecta. Intenta de nuevo.")
 
+        # Reto 7: Pregunta con opciones
+        if num_juego == 7 and request.method == "POST":
+            respuesta = request.form.get("respuesta")
+            if respuesta and respuesta.strip().lower() == "andres":
+                correcto = True
+            else:
+                flash("Respuesta incorrecta. Intenta de nuevo.")
+
         return render_template(
             "juego_detalle.html",
             num_juego=num_juego,
