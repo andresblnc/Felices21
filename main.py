@@ -1,12 +1,17 @@
 from flask import Flask, render_template, session, redirect, url_for, request, flash
 from datetime import timedelta
 from time import time
+import os
 
 app = Flask(__name__)
 app.secret_key = "cumple21"  # Necesario para sesiones
 app.permanent_session_lifetime = timedelta(days=10)  # Sesión dura 10 días
 
 TOTAL_RETOS = 8
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Obtén el puerto de la variable de entorno o usa 5000 por defecto
+    app.run(host="0.0.0.0", port=port, debug=True)
 
 def get_progreso():
     completados = session.get("completados", [])
